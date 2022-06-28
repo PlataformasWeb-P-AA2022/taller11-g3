@@ -30,7 +30,7 @@
       <ul>
         {% for d in e.departamentos.all %}
           <li>
-            <span>{{d.nombrePropietario}} - {{d.nroCuartos}} - [<a href="{% url 'editar_departamento' t.id %}">editar</a>] </span>
+            <span>{{d.nombrePropietario}} - {{d.nroCuartos}} - [<a href="{% url 'editar_departamento' d.id %}">editar</a>] </span>
           </li>
         {% endfor %}
       </ul>
