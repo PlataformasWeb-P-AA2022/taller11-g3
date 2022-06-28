@@ -64,7 +64,10 @@ class DepartamentoForm(ModelForm):
         model = Departamento
         fields = ['nombrePropietario', 'costo', 'edificio', 'nroCuartos']
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 392bcf6c409b72816c3a6adb327078c0223ec79f
 class DepartamentoEdificioForm(ModelForm):
 
     def __init__(self, edificio, *args, **kwargs):

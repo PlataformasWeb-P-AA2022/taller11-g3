@@ -12,19 +12,32 @@
 
     <title>
       {% block title %}
+<<<<<<< HEAD
       Aplicación Administración
+=======
+      Aplicación Residencias
+>>>>>>> 392bcf6c409b72816c3a6adb327078c0223ec79f
       {% endblock %}
     </title>
   </head>
   <body>
   <header>
     <img src="{% static 'images/logo.png' %}" height="10%" width="10%" alt="My image">
+<<<<<<< HEAD
     <h1>Aplicación Administración </h1>
     <nav class="top_menu">
       <ul>
         <li><a href="{% url 'index' %}">inicio</a></li>
         <li><a href="{% url 'crear_edificio' %}">agregar edificio</a></li>
         <li><a href="{% url 'crear_departamento' %}">agregar departamento</a></li>
+=======
+    <h1>Aplicación Residencias </h1>
+    <nav class="top_menu">
+      <ul>
+        <li><a href="{% url 'index' %}">Inicio</a></li>
+        <li><a href="{% url 'crear_edificio' %}">Agregar Edificio</a></li>
+        <li><a href="{% url 'crear_departamento' %}">Agregar Departamento</a></li>
+>>>>>>> 392bcf6c409b72816c3a6adb327078c0223ec79f
       </ul>
     </nav>
   </header>
@@ -35,4 +48,8 @@
   </section>
   {% include 'footer.html' %}
   </body>
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> 392bcf6c409b72816c3a6adb327078c0223ec79f
