@@ -30,7 +30,7 @@
       <ul>
         {% for d in e.departamentos.all %}
           <li>
-            <span>{{d.nombrePropietario}} - {{d.nroCuartos}} - [<a href="{% url 'editar_departamento' t.id %}">editar</a>] </span>
+            <span>{{d.nombrePropietario}} - {{d.nroCuartos}} - [<a href="{% url 'editar_departamento' d.id %}">Editar</a>] </span>
           </li>
         {% endfor %}
       </ul>
@@ -39,11 +39,11 @@
         <span><b>Total de cuartos:</b> {{ e.obtener_cantidad_departamentos }}</span>
         <br>[<a href="{% url 'crear_departamento_edificio' e.id%}">+Departamento</a>]
     </td>
-    <td> <a href="{% url 'obtener_edificio' e.id %}">ver</a> <br>
-      <a href="{% url 'editar_edificio' e.id %}">editar</a> <br>
+    <td> <a href="{% url 'obtener_edificio' e.id %}">Ver</a> <br>
+      <a href="{% url 'editar_edificio' e.id %}">Editar</a> <br>
       <a href="{% url 'eliminar_edificio' e.id %}"
       onclick="return confirm('¿Está seguro de la eliminación?')" >
-      eliminar</a>
+      Eliminar</a>
     </td>
 
   </tr>

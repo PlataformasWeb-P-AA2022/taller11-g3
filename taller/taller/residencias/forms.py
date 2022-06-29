@@ -28,7 +28,7 @@ class EdificioForm(ModelForm):
 
 class DepartamentoForm(ModelForm):
     class Meta:
-        model = NumeroDepartamento
+        model = Departamento
         fields = ['nombrePropietario', 'costo', 'edificio', 'nroCuartos']
     def clean_nombrePropietario(self):
         valor = self.cleaned_data['nombrePropietario']
@@ -52,7 +52,6 @@ class DepartamentoForm(ModelForm):
             raise forms.ValidationError("Ingrese cédula con 10 dígitos")
         return valor
 
-<<<<<<< HEAD
     def clean_correo(self):
         valor = self.cleaned_data['correo']
         if "@" not in valor or "utpl.edu.ec" not in valor:
@@ -65,9 +64,6 @@ class DepartamentoForm(ModelForm):
         model = Departamento
         fields = ['nombrePropietario', 'costo', 'edificio', 'nroCuartos']
 
-
-=======
->>>>>>> 30be0b6f828c2ab5b91e31b3bcb1f8c47231496c
 class DepartamentoEdificioForm(ModelForm):
 
     def __init__(self, edificio, *args, **kwargs):
