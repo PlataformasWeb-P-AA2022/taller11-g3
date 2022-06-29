@@ -4,10 +4,10 @@ from django.template import RequestContext
 from django.shortcuts import render
 
 # importar las clases de models.py
-from administrativo.models import *
+from residencias.models import *
 
 # importar los formularios de forms.py
-from administrativo.forms import *
+from residencias.forms import *
 
 # Create your views here.
 
