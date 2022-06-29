@@ -17,28 +17,42 @@ class EdificioForm(ModelForm):
         }
 
 
-    def clean_nombre(self):
-        valor = self.cleaned_data['nombre']
+    def clean_ciudad(self):
+        valor = self.cleaned_data['ciudad']
         num_palabras = len(valor.split())
 
         if num_palabras < 2:
-            raise forms.ValidationError("Ingrese dos nombre por favor")
+            raise forms.ValidationError("Ingrese una ciudad sin L por favor")
         return valor
 
-    def clean_apellido(self):
-        valor = self.cleaned_data['apellido']
+
+class DepartamentoForm(ModelForm):
+    class Meta:
+        model = NumeroDepartamento
+        fields = ['nombrePropietario', 'costo', 'edificio', 'nroCuartos']
+    def clean_nombrePropietario(self):
+        valor = self.cleaned_data['nombrePropietario']
+        num_palabras = len(valor.split())
+
+        if num_palabras < 3:
+            raise forms.ValidationError("Ingrese sus nombres completos por favor")
+        return valor
+    
+    def clean_nroCuartos(self):
+        valor = self.cleaned_data['nroCuartos']
         num_palabras = len(valor.split())
 
         if num_palabras < 2:
             raise forms.ValidationError("Ingrese dos apellidos por favor")
         return valor
 
-    def clean_cedula(self):
-        valor = self.cleaned_data['cedula']
+    def clean_costo(self):
+        valor = self.cleaned_data['costo']
         if len(valor) != 10:
             raise forms.ValidationError("Ingrese cédula con 10 dígitos")
         return valor
 
+<<<<<<< HEAD
     def clean_correo(self):
         valor = self.cleaned_data['correo']
         if "@" not in valor or "utpl.edu.ec" not in valor:
@@ -52,6 +66,8 @@ class DepartamentoForm(ModelForm):
         fields = ['nombrePropietario', 'costo', 'edificio', 'nroCuartos']
 
 
+=======
+>>>>>>> 30be0b6f828c2ab5b91e31b3bcb1f8c47231496c
 class DepartamentoEdificioForm(ModelForm):
 
     def __init__(self, edificio, *args, **kwargs):
