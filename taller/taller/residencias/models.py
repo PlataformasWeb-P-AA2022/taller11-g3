@@ -1,7 +1,7 @@
 from django.db import models
 
 class Edificio(models.Model):
-    
+
 	opcionesTipo = (
 		('residencial', 'Residencial'),
 		('comercial', 'Comercial'),
@@ -16,16 +16,17 @@ class Edificio(models.Model):
 			self.direccion,
 			self.ciudad,
 			self.tipo)
-
 	def obtener_costo_departamentos(self):
 		valor = 0;
 		for d in self.departamentos.all():
 			valor = valor + d.costo
-			return valor
+		return valor
 
-			def obtener_cantidad_departamentos(self):
-				valor = len(self.departamentos.all())
-				return valor
+	def obtener_cantidad_cuartos(self):
+		valor = 0;
+		for c in self.departamentos.all():
+			valor = valor + c.nroCuartos
+		return valor
 
 class Departamento(models.Model):
     nombrePropietario = models.CharField('Nombre del Propietario' ,max_length=100)
@@ -35,8 +36,6 @@ class Departamento(models.Model):
             related_name="departamentos")
 
     def __str__(self):
-        return "%s %.2f %d" % (self.nombrePropietario, 
+        return "%s %.2f %d" % (self.nombrePropietario,
         	self.costo,
         	self.nroCuartos)
-
-

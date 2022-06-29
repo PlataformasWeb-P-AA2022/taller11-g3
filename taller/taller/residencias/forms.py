@@ -30,6 +30,7 @@ class DepartamentoForm(ModelForm):
     class Meta:
         model = Departamento
         fields = ['nombrePropietario', 'costo', 'edificio', 'nroCuartos']
+
     def clean_nombrePropietario(self):
         valor = self.cleaned_data['nombrePropietario']
         num_palabras = len(valor.split())
@@ -37,19 +38,20 @@ class DepartamentoForm(ModelForm):
         if num_palabras < 3:
             raise forms.ValidationError("Ingrese sus nombres completos por favor")
         return valor
-    
+
     def clean_nroCuartos(self):
         valor = self.cleaned_data['nroCuartos']
-        num_palabras = len(valor.split())
+        num_palabras = len(valor.DecimalField())
 
         if num_palabras < 2:
-            raise forms.ValidationError("Ingrese dos apellidos por favor")
+            raise forms.ValidationError("El numero de cuartos no puede ser 0 ni mayor a 7 ingrese de nuevo")
         return valor
 
     def clean_costo(self):
         valor = self.cleaned_data['costo']
-        if len(valor) != 10:
-            raise forms.ValidationError("Ingrese cédula con 10 dígitos")
+        cost = valor
+        if cost.costo > 100000:
+            raise forms.ValidationError("El costo no debe ser superior a 100000")
         return valor
 
     def clean_correo(self):
@@ -58,16 +60,6 @@ class DepartamentoForm(ModelForm):
             raise forms.ValidationError("Ingrese correo válido para la Universidad")
         return valor
 
-
-class DepartamentoForm(ModelForm):
-    class Meta:
-        model = Departamento
-        fields = ['nombrePropietario', 'costo', 'edificio', 'nroCuartos']
-
-<<<<<<< HEAD
-
-=======
->>>>>>> 392bcf6c409b72816c3a6adb327078c0223ec79f
 class DepartamentoEdificioForm(ModelForm):
 
     def __init__(self, edificio, *args, **kwargs):

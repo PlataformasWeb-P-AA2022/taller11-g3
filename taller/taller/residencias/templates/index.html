@@ -30,17 +30,13 @@
       <ul>
         {% for d in e.departamentos.all %}
           <li>
-<<<<<<< HEAD
-            <span>{{d.nombrePropietario}} - {{d.nroCuartos}} - [<a href="{% url 'editar_departamento' d.id %}">editar</a>] </span>
-=======
             <span>{{d.nombrePropietario}} - {{d.nroCuartos}} - [<a href="{% url 'editar_departamento' d.id %}">Editar</a>] </span>
->>>>>>> 392bcf6c409b72816c3a6adb327078c0223ec79f
           </li>
         {% endfor %}
       </ul>
         <span><b>Total:</b> {{ e.obtener_costo_departamentos }}</span>
         <br>
-        <span><b>Total de cuartos:</b> {{ e.obtener_cantidad_departamentos }}</span>
+        <span><b>Total de cuartos: </b> {{e.obtener_cantidad_cuartos}}</span>
         <br>[<a href="{% url 'crear_departamento_edificio' e.id%}">+Departamento</a>]
     </td>
     <td> <a href="{% url 'obtener_edificio' e.id %}">Ver</a> <br>
