@@ -19,14 +19,27 @@ class EdificioForm(ModelForm):
 
     def clean_ciudad(self):
         valor = self.cleaned_data['ciudad']
-        num_palabras = len(valor.split())
+        nCiudad = valor.split()
+        letra = nCiudad[0]
 
-        if num_palabras < 2:
-            raise forms.ValidationError("Ingrese una ciudad sin L por favor")
+        if letra[0] == 'L':
+            raise forms.ValidationError("No puede ingresar una ciudad que inicie con la letra 'L'")
         return valor
 
 
 class DepartamentoForm(ModelForm):
+    class Meta:
+        model = Departamento
+        fields = ['nombrePropietario', 'costo', 'edificio', 'nroCuartos']
+
+class DepartamentoEdificioForm(ModelForm):
+
+    def __init__(self, edificio, *args, **kwargs):
+        super(DepartamentoEdificioForm, self).__init__(*args, **kwargs)
+        self.initial['edificio'] = edificio
+        self.fields["edificio"].widget = forms.widgets.HiddenInput()
+        print(edificio)
+
     class Meta:
         model = Departamento
         fields = ['nombrePropietario', 'costo', 'edificio', 'nroCuartos']
@@ -41,33 +54,15 @@ class DepartamentoForm(ModelForm):
 
     def clean_nroCuartos(self):
         valor = self.cleaned_data['nroCuartos']
-        num_palabras = len(valor.DecimalField())
+        num_cuartos = valor
 
-        if num_palabras < 2:
-            raise forms.ValidationError("El numero de cuartos no puede ser 0 ni mayor a 7 ingrese de nuevo")
+        if num_cuartos < 1 or num_cuartos > 7:
+            raise forms.ValidationError("El numero de cuartos validos son de 1 a 7")
         return valor
 
     def clean_costo(self):
         valor = self.cleaned_data['costo']
-        cost = valor
-        if cost.costo > 100000:
-            raise forms.ValidationError("El costo no debe ser superior a 100000")
+        precio = valor
+        if precio > 100000:
+            raise forms.ValidationError("El costo no debe ser superior a $100000")
         return valor
-
-    def clean_correo(self):
-        valor = self.cleaned_data['correo']
-        if "@" not in valor or "utpl.edu.ec" not in valor:
-            raise forms.ValidationError("Ingrese correo válido para la Universidad")
-        return valor
-
-class DepartamentoEdificioForm(ModelForm):
-
-    def __init__(self, edificio, *args, **kwargs):
-        super(DepartamentoEdificioForm, self).__init__(*args, **kwargs)
-        self.initial['edificio'] = edificio
-        self.fields["edificio"].widget = forms.widgets.HiddenInput()
-        print(edificio)
-
-    class Meta:
-        model = Departamento
-        fields = ['nombrePropietario', 'costo', 'edificio', 'nroCuartos']
